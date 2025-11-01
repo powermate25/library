@@ -60,9 +60,9 @@ addBookToLibrary("Mission Impossible", "Tom cruise", "102")
 addBookToLibrary("The Girl with the Dragon Tattoo", "Stieg Larsson", "672")
 addBookToLibrary("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "512")
 addBookToLibrary("The Secret History", "Donna Tartt", "559")
-addBookToLibrary("One Hundred Years of Solitude", "Gabriel García Márquez", "417")
+/* addBookToLibrary("One Hundred Years of Solitude", "Gabriel García Márquez", "417")
 addBookToLibrary("Where the Crawdads Sing", "Delia Owens", "384")
-addBookToLibrary("Educated: A Memoir", "Tara Westover", "352")
+addBookToLibrary("Educated: A Memoir", "Tara Westover", "352") */
 
 // On page book display logic
 
