@@ -85,7 +85,7 @@ function bookContainer (){
   // Adding corresponding content to each div
   titleBox.textContent = ` ${ myLibrary[i].title} `
   authorBox.textContent = ` ${ myLibrary[i].author} `
-  pagesBox.textContent = "Page number " + `${ myLibrary[i].pages}`
+  pagesBox.textContent = `${ myLibrary[i].pages}` + " Pages" 
   // idBox.textContent = ` ${ myLibrary[i].id} `
 
   // Preparing book container (parent) 
@@ -110,31 +110,33 @@ buttonAddBook.addEventListener(
     userBookTitle = prompt("Book's Title", "Ex: Hello World")
     userBookAuthor = prompt("Book's author", "Ex: Author Name")
     userBookPages = prompt("Book's page number", "Ex: 201")
+    generateId = crypto.randomUUID()
     if (userBookTitle === undefined || userBookAuthor === undefined|| userBookPages === undefined) {alert("Please make sure all fields are provided!")}
     else if (userBookTitle === "" || userBookAuthor === ""|| userBookPages === "") {alert("Please make sure all fields are provided!")}
     else if (userBookTitle === null || userBookAuthor === null || userBookPages === null) {alert("Please make sure all fields are provided!")}
-    else {addBookToLibrary(userBookTitle, userBookAuthor, userBookPages), alert( "New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉")}
-    generateId = crypto.randomUUID()
+    else {
+      addBookToLibrary(userBookTitle, userBookAuthor, userBookPages), alert( "New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉")
 
-  titleBox = document.createElement("div")
-  titleBox.classList.add("book-title")
-  authorBox = document.createElement("div")
-  authorBox.classList.add("book-author")
-  pagesBox = document.createElement("div")
-  pagesBox.classList.add("book-pages")
-  idBox = document.createElement("div")
-  idBox.classList.add("book-id")
+      titleBox = document.createElement("div")
+      titleBox.classList.add("book-title")
+      authorBox = document.createElement("div")
+      authorBox.classList.add("book-author")
+      pagesBox = document.createElement("div")
+      pagesBox.classList.add("book-pages")
+      idBox = document.createElement("div")
+      idBox.classList.add("book-id")
 
-  titleBox.textContent = userBookTitle
-  authorBox.textContent = userBookAuthor
-  pagesBox.textContent = userBookPages
+      titleBox.textContent = userBookTitle
+      authorBox.textContent = userBookAuthor
+      pagesBox.textContent = userBookPages
 
-  bookCard = document.createElement("div")
-  bookCard.classList.add("book-card")
-  
-  bookCard.append(titleBox, authorBox, pagesBox, idBox)
+      bookCard = document.createElement("div")
+      bookCard.classList.add("book-card")
+      
+      bookCard.append(titleBox, authorBox, pagesBox, idBox)
 
-  libraryContainer.append(bookCard)
+      libraryContainer.append(bookCard)
+    }
     
     bookByUSer = {
     title: userBookTitle,
@@ -142,8 +144,10 @@ buttonAddBook.addEventListener(
     pages: userBookPages,
     id: generateId,
   }
-  console.log(bookByUSer)
+  // console.log(bookByUSer)
   myLibrary.push(bookByUSer)
   return myLibrary
   }
 )
+
+console.log(myLibrary)
