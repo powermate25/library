@@ -73,7 +73,7 @@ const libraryContainer = document.querySelector(".library-container")
 // 2. iterating through books using "for ... in" and displaying book card to main book container
 
 function bookContainer (){
- titleBox = document.createElement("div")
+  titleBox = document.createElement("div")
   titleBox.classList.add("book-title")
   authorBox = document.createElement("div")
   authorBox.classList.add("book-author")
@@ -81,19 +81,31 @@ function bookContainer (){
   pagesBox.classList.add("book-pages")
   idBox = document.createElement("div")
   idBox.classList.add("book-id")
+  deleteBookIcon = document.createElement("button")
+  deleteBookIcon.id = myLibrary[i].id
 
   // Adding corresponding content to each div
   titleBox.textContent = ` ${ myLibrary[i].title} `
   authorBox.textContent = ` ${ myLibrary[i].author} `
   pagesBox.textContent = `${ myLibrary[i].pages}` + " pages" 
+  
+  //preparing icon for delete button
+  delIcon = document.createElement("img")
+  delIcon.src = "./images/cog.svg"
+  delIcon.style.width = "10%"
+  deleteBookIcon.append(delIcon)
+  deleteBookIcon.append("Del book?")
+  //To be continue...
   // idBox.textContent = ` ${ myLibrary[i].id} `
+
+  
 
   // Preparing book container (parent) 
   bookCard = document.createElement("div")
   bookCard.classList.add("book-card")
   
   // Append child divs with their content to parent div
-  bookCard.append(titleBox, authorBox, pagesBox, idBox)
+  bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
 
   // display book-cards in document's main book-container
   libraryContainer.append(bookCard)
@@ -125,15 +137,18 @@ buttonAddBook.addEventListener(
       pagesBox.classList.add("book-pages")
       idBox = document.createElement("div")
       idBox.classList.add("book-id")
+      deleteBookIcon = document.createElement("button")
+      deleteBookIcon.id = generateId
 
       titleBox.textContent = userBookTitle
       authorBox.textContent = userBookAuthor
       pagesBox.textContent = userBookPages + " pages"
+      deleteBookIcon.textContent = "Del book?"
 
       bookCard = document.createElement("div")
       bookCard.classList.add("book-card")
       
-      bookCard.append(titleBox, authorBox, pagesBox, idBox)
+      bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
 
       libraryContainer.append(bookCard)
     }
