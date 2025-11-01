@@ -85,7 +85,7 @@ function bookContainer (){
   // Adding corresponding content to each div
   titleBox.textContent = ` ${ myLibrary[i].title} `
   authorBox.textContent = ` ${ myLibrary[i].author} `
-  pagesBox.textContent = `${ myLibrary[i].pages}` + " Pages" 
+  pagesBox.textContent = `${ myLibrary[i].pages}` + " pages" 
   // idBox.textContent = ` ${ myLibrary[i].id} `
 
   // Preparing book container (parent) 
@@ -128,7 +128,7 @@ buttonAddBook.addEventListener(
 
       titleBox.textContent = userBookTitle
       authorBox.textContent = userBookAuthor
-      pagesBox.textContent = userBookPages
+      pagesBox.textContent = userBookPages + " pages"
 
       bookCard = document.createElement("div")
       bookCard.classList.add("book-card")
