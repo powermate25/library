@@ -25,6 +25,10 @@ body{
     color: oklch(98.7% 0.022 95.277);
 }
 
+button:hover {
+    background-color: oklch(21% 0.077 45.635);
+}
+
 .library-container {
     /* border: 1px solid blue; */
     background-color: oklch(96.2% 0.059 95.617);
@@ -50,7 +54,13 @@ body{
     align-items: center;
     gap: 0.3rem;
     background-color: oklch(87.9% 0.169 91.605);
+    box-shadow: 1px 2px 4px oklch(72% 1% 120 / 50%);
 }
+
+.book-card:hover {
+    box-shadow: 1px 2px 4px oklch(33% 1% 120 / 50%);
+}
+
 .book-title {
     font-weight: 600;
     height: 80%;
