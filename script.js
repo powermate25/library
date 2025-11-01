@@ -1,0 +1,80 @@
+// Library declaration bellow
+const myLibrary = [];
+
+// Book constructor function below
+
+function CreateBook (title, author, pageNumber, id) {
+  if(!new.target){throw Error("Always remember to always use 'new'")};
+  this.title = title;
+  this.author = author;
+  this.pageNumber = pageNumber;
+  this.id = id;
+
+  newBook = {
+    title: this.title,
+    author: this.author,
+    pages: this.pageNumber,
+    id: this.id,
+  }
+  myLibrary.push(newBook)
+
+  return myLibrary;
+}
+
+// Adding new book to library function below
+
+function addBookToLibrary (title, author, pageNumber){
+ uniqueId = crypto.randomUUID()
+  new CreateBook(title, author, pageNumber, uniqueId)
+}
+
+// adding random book details using above function
+
+addBookToLibrary("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "193")
+addBookToLibrary("The Joy Luck Club", "Amy Tan", "288" )
+addBookToLibrary("Fahrenheit 451", "Ray Bradbury", "158")
+addBookToLibrary("Mission Impossible", "Tom cruise", "102")
+
+addBookToLibrary("The Girl with the Dragon Tattoo", "Stieg Larsson", "672")
+addBookToLibrary("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "512")
+addBookToLibrary("The Secret History", "Donna Tartt", "559")
+addBookToLibrary("One Hundred Years of Solitude", "Gabriel García Márquez", "417")
+addBookToLibrary("Where the Crawdads Sing", "Delia Owens", "384")
+addBookToLibrary("Educated: A Memoir", "Tara Westover", "352")
+
+// On page book display logic
+
+// 1. Declaring main book container
+
+const libraryContainer = document.querySelector(".library-container")    
+
+// 2. iterating through books using "for ... in" and displaying book card to main book container
+    
+for ( i in myLibrary ) {
+  // creating & adding classes to new divs inside function scope
+  titleBox = document.createElement("div")
+  titleBox.classList.add("book-title")
+  authorBox = document.createElement("div")
+  authorBox.classList.add("book-author")
+  pagesBox = document.createElement("div")
+  pagesBox.classList.add("book-pages")
+  idBox = document.createElement("div")
+  idBox.classList.add("book-id")
+
+  // Adding corresponding content to each div
+  titleBox.textContent = ` ${ myLibrary[i].title} `
+  authorBox.textContent = ` ${ myLibrary[i].author} `
+  pagesBox.textContent = "Page number " + `${ myLibrary[i].pages}`
+  // idBox.textContent = ` ${ myLibrary[i].id} `
+
+  // Preparing book container (parent) 
+  bookCard = document.createElement("div")
+  bookCard.classList.add("book-card")
+  
+  // Append child divs with their content to parent div
+  bookCard.append(titleBox, authorBox, pagesBox, idBox)
+
+  // display book-cards in document's main book-container
+  libraryContainer.append(bookCard)
+}
+
