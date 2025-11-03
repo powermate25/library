@@ -150,6 +150,7 @@ function bookContainer (){
 
   // display book-cards in document's main book-container
   libraryContainer.append(bookCard)
+  return myLibrary
 }
 
 // Step 2: Set individual book to a card using above function by iterating through library (book object) using "for ... in" loop) 
@@ -160,29 +161,34 @@ for ( i in myLibrary ) {
 
 
 // Logic to remove book card on click
-const groupOfDelIcon = document.querySelectorAll(".del-icon")
-groupOfDelIcon.forEach (
-  i => i.addEventListener(
-      "click", () => {
-        console.log(myLibrary) 
-        targetBookCard = document.getElementById(`${i.id}`)
-        targetBookCard.remove()
-        console.log("target card is:" + targetBookCard.id )
-        console.log("i.id is:" + i.id )
+function deleteBookData(){
+  const groupOfDelIcon = document.querySelectorAll(".del-icon")
+  groupOfDelIcon.forEach (
+    i => i.addEventListener(
+        "click", () => {
+          console.log(myLibrary) 
+          targetBookCard = document.getElementById(`${i.id}`)
+          targetBookCard.remove()
+          console.log("target card is:" + targetBookCard.id )
+          console.log("i.id is:" + i.id )
 
-        //removing book from library also
-        for (book in myLibrary) {      
-          if (myLibrary[book].id === i.id){
-            delete myLibrary[book]
-            console.log("book object also deleted from myLibrary")
-            return myLibrary
-          }
-        }    
-      }
-     )
-)
+          //removing book from library also
+          for (book in myLibrary) {      
+            if (myLibrary[book].id === i.id){
+              delete myLibrary[book]
+              console.log("book object also deleted from myLibrary")
+              return myLibrary
+            }
+          }    
+        }
+      )
+  )
+}
+
+deleteBookData()
 
 myLibrary
+
 
 
 

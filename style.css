@@ -65,6 +65,7 @@ button:hover {
 .book-title {
     font-weight: 600;
     height: 80%;
+    font-size: calc(1rem + 10%); 
     /* border: 1px solid blue; */
 }
 .book-author {
@@ -85,7 +86,7 @@ button:hover {
 
 .del-icon-box {
     /* border: 1px solid blue; */
-    width: 10rem; /* width: 10rem; */
+    width: 90%;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -96,6 +97,7 @@ button:hover {
     background-color: oklch(27.9% 0.077 45.635);
     border-radius: 50%;
     box-shadow: 1px 2px 4px oklch(33% 1% 91.605 / 50%);
+    max-width: 2rem; 
 }
 
 .del-icon:hover {
