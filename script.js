@@ -15,6 +15,8 @@ function CreateBook (title, author, pageNumber, id) {
     author: this.author,
     pages: this.pageNumber,
     id: this.id,
+    readState: "unread"
+    
   }
   myLibrary.push(newBook)
 
@@ -58,11 +60,15 @@ buttonAddBook.addEventListener(
       pagesBox.classList.add("book-pages")
       idBox = document.createElement("div")
       idBox.classList.add("book-id")
+      readStateBtn = document.createElement("button")
+  readStateBtn.classList.add("read-state-btn")
       deleteBookIcon = document.createElement("div")
-      deleteBookIcon.classList.add("del-icon-box")
+      deleteBookIcon.classList.add("icon-box")
       
 
-      //preparing icon for delete button
+      //preparing buttons & icons
+      readStateBtn.id = generateId
+      deleteBookIcon.append(readStateBtn)
       delIcon = document.createElement("img")
       delIcon.classList.add("del-icon")
       delIcon.src = "./images/icons/delete-white.svg"
@@ -70,11 +76,13 @@ buttonAddBook.addEventListener(
       delIcon.style.width = "18%"
       deleteBookIcon.append(delIcon)
       // deleteBookIcon.append("Del book?")
+      
 
       titleBox.textContent = userBookTitle
       authorBox.textContent = userBookAuthor
       pagesBox.textContent = userBookPages + " pages"
       // deleteBookIcon.textContent = "Del book?"
+      readStateBtn.textContent = "Unread"
 
       bookCard = document.createElement("div")
       bookCard.classList.add("book-card")
@@ -121,22 +129,30 @@ function bookContainer (){
   pagesBox.classList.add("book-pages")
   idBox = document.createElement("div")
   idBox.classList.add("book-id")
+  readStateBtn = document.createElement("button")
+  readStateBtn.classList.add("read-state-btn")
   deleteBookIcon = document.createElement("div")
-  deleteBookIcon.classList.add("del-icon-box")
+  deleteBookIcon.classList.add("icon-box")
+  
 
-  //preparing icon for delete button
+
+  //preparing buttons & icons
+  readStateBtn.id = myLibrary[i].id
+  deleteBookIcon.append(readStateBtn)
   delIcon = document.createElement("img")
   delIcon.classList.add("del-icon")
   delIcon.src = "./images/icons/delete-white.svg"
   delIcon.id = myLibrary[i].id
   delIcon.style.width = "18%"
   deleteBookIcon.append(delIcon)
+  
   // deleteBookIcon.append("Del book?")
 
   // Adding corresponding content to each div
   titleBox.textContent = ` ${ myLibrary[i].title} `
   authorBox.textContent = ` ${ myLibrary[i].author} `
-  pagesBox.textContent = `${ myLibrary[i].pages}` + " pages" 
+  pagesBox.textContent = `${ myLibrary[i].pages}` + " pages"
+  readStateBtn.textContent = "Unread"
 
   // idBox.textContent = ` ${ myLibrary[i].id} `
 
@@ -160,7 +176,8 @@ for ( i in myLibrary ) {
 }
 
 
-// Logic to remove book card on click
+// Logic to remove book card and object data on click
+// Step 1: Defining the function
 function deleteBookData(){
   const groupOfDelIcon = document.querySelectorAll(".del-icon")
   groupOfDelIcon.forEach (
@@ -185,10 +202,48 @@ function deleteBookData(){
   )
 }
 
+// Step 2: initializing the function
 deleteBookData()
+
+
 
 myLibrary
 
+// Logic for toggling book read status on click (both on screen and inside object)
+
+//Step 1: targeting buttons by classes
+const toggleButtons = document.querySelectorAll(".read-state-btn")
+
+//Step 2: Defining the function
+function toggleReadState(){myLibrary[book].readState !== "unread" ? myLibrary[book].readState = "unread" : myLibrary[book].readState = "finished-reading"}
+
+//Step 3: initializing the function and iterating through all buttons and corresponding object data using for loops
+toggleButtons.forEach(
+  i => {
+    i.addEventListener(
+      "click", () => {
+        i.textContent !== "Unread" ? i.textContent = "Unread" : i.textContent = "Finished reading"
+        console.log(i)
+//Step 3.1 Toggling also corresponding object data using for in loop
+         for (book in myLibrary) {      
+            if (myLibrary[book].id === i.id){
+              toggleReadState()
+              console.log(myLibrary[book].readState)
+              toggleReadState()
+              console.log(myLibrary[book].readState)
+              return myLibrary}
+          }  
+
+      }
+      
+    )
+      
+  }
+)
+//Logic Completed
+
+
+console.log(myLibrary)
 
 
 
