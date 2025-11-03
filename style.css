@@ -5,9 +5,9 @@ body{
     background-color: oklch(98.7% 0.022 95.277);
 }
 * {
-    marging: 0;
+    /* margin: 0; */
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 .header {
@@ -34,16 +34,17 @@ button:hover {
     background-color: oklch(96.2% 0.059 95.617);
     border-radius: 9px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
    /*  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
     /* grid-auto-rows: 60%; */
-    grid-auto-rows: minmax(250px, 1fr);
+    grid-auto-rows: minmax(300px, 1fr);
     gap: 1rem;
     margin: 2rem;
+    padding: 2rem;
 }
 
 .book-card {
-    border: 1px solid oklch(70.7% 0.022 261.325);
+    border: 1px solid oklch(70.7% 10% 91.605);
     font-size: 80%;
     text-align: center;
     padding: 1rem;
@@ -79,6 +80,29 @@ button:hover {
     height: 5%;
     align-self: center;
     font-size: 70%;
+}
+
+
+.del-icon-box {
+    /* border: 1px solid blue; */
+    width: 10rem; /* width: 10rem; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.del-icon {
+    border: 4px solid oklch(27.9% 0.077 45.635);
+    background-color: oklch(27.9% 0.077 45.635);
+    border-radius: 50%;
+    box-shadow: 1px 2px 4px oklch(33% 1% 91.605 / 50%);
+}
+
+.del-icon:hover {
+    box-shadow: 1px 2px 4px oklch(33% 1% 91.605 / 50%);
+    width: 50%;
+    border: none;
+    background-color: transparent;
 }
 
 /* book-title,book-author,book-pages,book-pages,book-id */

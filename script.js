@@ -21,101 +21,21 @@ function CreateBook (title, author, pageNumber, id) {
   return myLibrary;
 }
 
+
+
+
+
 // Adding new book to library function below
 
-function addBookToLibrary (title, author, pageNumber){
- uniqueId = crypto.randomUUID()
-  new CreateBook(title, author, pageNumber, uniqueId)
+function addBookToLibrary (title, author, pageNumber, uniqueId){
+ const currentBook = new CreateBook(title, author, pageNumber, uniqueId)
 }
+
 
 // button add book to library function
 
 const buttonAddBook = document.querySelector(".add-book")
 console.log(buttonAddBook)
-
-function userAddNewBook (){
-  userBookTitle = prompt("Book's Title", "Ex: Hello World")
-  userBookAuthor = prompt("Book's author", "Ex: Author Name")
-  userBookPages = prompt("Book's page number", "Ex: 201")
-  if (userBookTitle === undefined || userBookAuthor === undefined|| userBookPages === undefined) {alert("Please make sure all fields are provided!")}
-  else if (userBookTitle === "" || userBookAuthor === ""|| userBookPages === "") {alert("Please make sure all fields are provided!")}
-  else if (userBookTitle === null || userBookAuthor === null || userBookPages === null) {alert("Please make sure all fields are provided!")}
-  else {addBookToLibrary(userBookTitle, userBookAuthor, userBookPages), alert( "New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉")}
-}
-
-
- // userAddNewBook()
-//alert( New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉)
-
-
-// myLibrary
-
-// adding default random book details using addBookToLibrary function
-
-addBookToLibrary("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "193")
-addBookToLibrary("The Joy Luck Club", "Amy Tan", "288" )
-addBookToLibrary("Fahrenheit 451", "Ray Bradbury", "158")
-addBookToLibrary("Mission Impossible", "Tom cruise", "102")
-
-addBookToLibrary("The Girl with the Dragon Tattoo", "Stieg Larsson", "672")
-addBookToLibrary("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "512")
-addBookToLibrary("The Secret History", "Donna Tartt", "559")
-/* addBookToLibrary("One Hundred Years of Solitude", "Gabriel García Márquez", "417")
-addBookToLibrary("Where the Crawdads Sing", "Delia Owens", "384")
-addBookToLibrary("Educated: A Memoir", "Tara Westover", "352") */
-
-// On page book display logic
-
-// 1. Declaring main book container
-
-const libraryContainer = document.querySelector(".library-container")    
-
-// 2. iterating through books using "for ... in" and displaying book card to main book container
-
-function bookContainer (){
-  titleBox = document.createElement("div")
-  titleBox.classList.add("book-title")
-  authorBox = document.createElement("div")
-  authorBox.classList.add("book-author")
-  pagesBox = document.createElement("div")
-  pagesBox.classList.add("book-pages")
-  idBox = document.createElement("div")
-  idBox.classList.add("book-id")
-  deleteBookIcon = document.createElement("button")
-  deleteBookIcon.id = myLibrary[i].id
-
-  // Adding corresponding content to each div
-  titleBox.textContent = ` ${ myLibrary[i].title} `
-  authorBox.textContent = ` ${ myLibrary[i].author} `
-  pagesBox.textContent = `${ myLibrary[i].pages}` + " pages" 
-  
-  //preparing icon for delete button
-  delIcon = document.createElement("img")
-  delIcon.src = "./images/cog.svg"
-  delIcon.style.width = "10%"
-  deleteBookIcon.append(delIcon)
-  deleteBookIcon.append("Del book?")
-  //To be continue...
-  // idBox.textContent = ` ${ myLibrary[i].id} `
-
-  
-
-  // Preparing book container (parent) 
-  bookCard = document.createElement("div")
-  bookCard.classList.add("book-card")
-  
-  // Append child divs with their content to parent div
-  bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
-
-  // display book-cards in document's main book-container
-  libraryContainer.append(bookCard)
-}
-
-for ( i in myLibrary ) {
-  // creating & adding classes to new divs inside function scope
-  bookContainer ()
-}
-
 
 buttonAddBook.addEventListener(
   "click", () => {
@@ -127,7 +47,8 @@ buttonAddBook.addEventListener(
     else if (userBookTitle === "" || userBookAuthor === ""|| userBookPages === "") {alert("Please make sure all fields are provided!")}
     else if (userBookTitle === null || userBookAuthor === null || userBookPages === null) {alert("Please make sure all fields are provided!")}
     else {
-      addBookToLibrary(userBookTitle, userBookAuthor, userBookPages), alert( "New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉")
+      addBookToLibrary(userBookTitle, userBookAuthor, userBookPages, generateId), alert( "New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉")
+      myLibrary
 
       titleBox = document.createElement("div")
       titleBox.classList.add("book-title")
@@ -137,32 +58,131 @@ buttonAddBook.addEventListener(
       pagesBox.classList.add("book-pages")
       idBox = document.createElement("div")
       idBox.classList.add("book-id")
-      deleteBookIcon = document.createElement("button")
-      deleteBookIcon.id = generateId
+      deleteBookIcon = document.createElement("div")
+      deleteBookIcon.classList.add("del-icon-box")
+      
+
+      //preparing icon for delete button
+      delIcon = document.createElement("img")
+      delIcon.classList.add("del-icon")
+      delIcon.src = "./images/icons/delete-white.svg"
+      delIcon.id = generateId
+      delIcon.style.width = "18%"
+      deleteBookIcon.append(delIcon)
+      // deleteBookIcon.append("Del book?")
 
       titleBox.textContent = userBookTitle
       authorBox.textContent = userBookAuthor
       pagesBox.textContent = userBookPages + " pages"
-      deleteBookIcon.textContent = "Del book?"
+      // deleteBookIcon.textContent = "Del book?"
 
       bookCard = document.createElement("div")
       bookCard.classList.add("book-card")
+      bookCard.id = generateId
       
       bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
 
       libraryContainer.append(bookCard)
-    }
-    
-    bookByUSer = {
-    title: userBookTitle,
-    author: userBookAuthor,
-    pages: userBookPages,
-    id: generateId,
-  }
-  // console.log(bookByUSer)
-  myLibrary.push(bookByUSer)
-  return myLibrary
+    return myLibrary 
+  
+}
   }
 )
 
-console.log(myLibrary)
+
+// adding default random book details using addBookToLibrary function
+addBookToLibrary("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "193", crypto.randomUUID() )
+addBookToLibrary("The Joy Luck Club", "Amy Tan", "288", crypto.randomUUID() )
+addBookToLibrary("Fahrenheit 451", "Ray Bradbury", "158", crypto.randomUUID() )
+addBookToLibrary("Mission Impossible", "Tom cruise", "102", crypto.randomUUID() )
+
+addBookToLibrary("The Girl with the Dragon Tattoo", "Stieg Larsson", "672", crypto.randomUUID() )
+addBookToLibrary("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "512", crypto.randomUUID() )
+addBookToLibrary("The Secret History", "Donna Tartt", "559", crypto.randomUUID() )
+// addBookToLibrary("One Hundred Years of Solitude", "Gabriel García Márquez", "417")
+// addBookToLibrary("Where the Crawdads Sing", "Delia Owens", "384")
+// addBookToLibrary("Educated: A Memoir", "Tara Westover", "352")
+
+
+// On-page book display logic
+
+// 1. Declaring main book container
+const libraryContainer = document.querySelector(".library-container")    
+
+
+// displaying book card to main book container
+//Step 1: Initializing function to handle book card and div containers
+function bookContainer (){
+  titleBox = document.createElement("div")
+  titleBox.classList.add("book-title")
+  authorBox = document.createElement("div")
+  authorBox.classList.add("book-author")
+  pagesBox = document.createElement("div")
+  pagesBox.classList.add("book-pages")
+  idBox = document.createElement("div")
+  idBox.classList.add("book-id")
+  deleteBookIcon = document.createElement("div")
+  deleteBookIcon.classList.add("del-icon-box")
+
+  //preparing icon for delete button
+  delIcon = document.createElement("img")
+  delIcon.classList.add("del-icon")
+  delIcon.src = "./images/icons/delete-white.svg"
+  delIcon.id = myLibrary[i].id
+  delIcon.style.width = "18%"
+  deleteBookIcon.append(delIcon)
+  // deleteBookIcon.append("Del book?")
+
+  // Adding corresponding content to each div
+  titleBox.textContent = ` ${ myLibrary[i].title} `
+  authorBox.textContent = ` ${ myLibrary[i].author} `
+  pagesBox.textContent = `${ myLibrary[i].pages}` + " pages" 
+
+  // idBox.textContent = ` ${ myLibrary[i].id} `
+
+  // Preparing book container (parent) 
+  bookCard = document.createElement("div")
+  bookCard.classList.add("book-card")
+  bookCard.id = myLibrary[i].id
+  
+  // Append child divs with their content to parent div
+  bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
+
+  // display book-cards in document's main book-container
+  libraryContainer.append(bookCard)
+}
+
+// Step 2: Set individual book to a card using above function by iterating through library (book object) using "for ... in" loop) 
+for ( i in myLibrary ) {
+  // creating & adding classes to new divs inside function scope
+  bookContainer ()
+}
+
+
+// Logic to remove book card on click
+const groupOfDelIcon = document.querySelectorAll(".del-icon")
+groupOfDelIcon.forEach (
+  i => i.addEventListener(
+      "click", () => {
+        console.log(myLibrary) 
+        targetBookCard = document.getElementById(`${i.id}`)
+        targetBookCard.remove()
+        console.log("target card is:" + targetBookCard.id )
+        console.log("i.id is:" + i.id )
+
+        //removing book from library also
+        for (book in myLibrary) {      
+          if (myLibrary[book].id === i.id){
+            delete myLibrary[book]
+            console.log("book object also deleted from myLibrary")
+            return myLibrary
+          }
+        }    
+      }
+     )
+)
+
+myLibrary
+
+
+
