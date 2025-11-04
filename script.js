@@ -1,8 +1,13 @@
-// Library declaration bellow
+// Empty Library Object declaration
 const myLibrary = [];
 
-// Book constructor function below
+// Predefined Library div container
+const libraryContainer = document.querySelector(".library-container")   
 
+// declaring "add book" button
+const buttonAddBook = document.querySelector(".add-book")
+
+// Book constructor function below
 function CreateBook (title, author, pageNumber, id) {
   if(!new.target){throw Error("Always remember to always use 'new'")};
   this.title = title;
@@ -23,24 +28,15 @@ function CreateBook (title, author, pageNumber, id) {
   return myLibrary;
 }
 
-
-
-
-
-// Adding new book to library function below
-
+// Function to add new book to library
 function addBookToLibrary (title, author, pageNumber, uniqueId){
  const currentBook = new CreateBook(title, author, pageNumber, uniqueId)
 }
 
-
-// button add book to library function
-
-const buttonAddBook = document.querySelector(".add-book")
-console.log(buttonAddBook)
-
+// Declaring "Add book" button function and logic. Adds book to library object and display book card to document content
 buttonAddBook.addEventListener(
   "click", () => {
+    // adding book to objet library
     userBookTitle = prompt("Book's Title", "Ex: Hello World")
     userBookAuthor = prompt("Book's author", "Ex: Author Name")
     userBookPages = prompt("Book's page number", "Ex: 201")
@@ -52,6 +48,7 @@ buttonAddBook.addEventListener(
       addBookToLibrary(userBookTitle, userBookAuthor, userBookPages, generateId), alert( "New book added to your library.\n Soon (next commit for sure), you'll be able to add book via a proper form. 😉")
       myLibrary
 
+      // Preparing container and adding book to display
       titleBox = document.createElement("div")
       titleBox.classList.add("book-title")
       authorBox = document.createElement("div")
@@ -61,12 +58,10 @@ buttonAddBook.addEventListener(
       idBox = document.createElement("div")
       idBox.classList.add("book-id")
       readStateBtn = document.createElement("button")
-  readStateBtn.classList.add("read-state-btn")
+      readStateBtn.classList.add("read-state-btn")
       deleteBookIcon = document.createElement("div")
       deleteBookIcon.classList.add("icon-box")
-      
-
-      //preparing buttons & icons
+      //preparing buttons & icons and assigning id to book and card for unified DOM control
       readStateBtn.id = generateId
       deleteBookIcon.append(readStateBtn)
       delIcon = document.createElement("img")
@@ -76,51 +71,34 @@ buttonAddBook.addEventListener(
       delIcon.style.width = "18%"
       deleteBookIcon.append(delIcon)
       // deleteBookIcon.append("Del book?")
-      
-
       titleBox.textContent = userBookTitle
       authorBox.textContent = userBookAuthor
       pagesBox.textContent = userBookPages + " pages"
-      // deleteBookIcon.textContent = "Del book?"
       readStateBtn.textContent = "Unread"
 
       bookCard = document.createElement("div")
       bookCard.classList.add("book-card")
       bookCard.id = generateId
-      
+      // appending child divs to book card div 
       bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
-
+      // appending book card div to document
       libraryContainer.append(bookCard)
-    return myLibrary 
-  
+      myLibrary
 }
   }
 )
 
-
-// adding default random book details using addBookToLibrary function
+//Loading initial page with some random book details using addBookToLibrary function (could be deleted by user anyway)
 addBookToLibrary("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "193", crypto.randomUUID() )
 addBookToLibrary("The Joy Luck Club", "Amy Tan", "288", crypto.randomUUID() )
 addBookToLibrary("Fahrenheit 451", "Ray Bradbury", "158", crypto.randomUUID() )
 addBookToLibrary("Mission Impossible", "Tom cruise", "102", crypto.randomUUID() )
 
-addBookToLibrary("The Girl with the Dragon Tattoo", "Stieg Larsson", "672", crypto.randomUUID() )
-addBookToLibrary("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "512", crypto.randomUUID() )
-addBookToLibrary("The Secret History", "Donna Tartt", "559", crypto.randomUUID() )
-// addBookToLibrary("One Hundred Years of Solitude", "Gabriel García Márquez", "417")
-// addBookToLibrary("Where the Crawdads Sing", "Delia Owens", "384")
-// addBookToLibrary("Educated: A Memoir", "Tara Westover", "352")
-
 
 // On-page book display logic
-
-// 1. Declaring main book container
-const libraryContainer = document.querySelector(".library-container")    
-
-
-// displaying book card to main book container
-//Step 1: Initializing function to handle book card and div containers
+//Step 1: Initializing a function to handle book card and div containers
 function bookContainer (){
+  // Declaring divs
   titleBox = document.createElement("div")
   titleBox.classList.add("book-title")
   authorBox = document.createElement("div")
@@ -133,10 +111,7 @@ function bookContainer (){
   readStateBtn.classList.add("read-state-btn")
   deleteBookIcon = document.createElement("div")
   deleteBookIcon.classList.add("icon-box")
-  
-
-
-  //preparing buttons & icons
+  // preparing buttons & icons
   readStateBtn.id = myLibrary[i].id
   deleteBookIcon.append(readStateBtn)
   delIcon = document.createElement("img")
@@ -145,33 +120,26 @@ function bookContainer (){
   delIcon.id = myLibrary[i].id
   delIcon.style.width = "18%"
   deleteBookIcon.append(delIcon)
-  
-  // deleteBookIcon.append("Del book?")
-
-  // Adding corresponding content to each div
+  /* deleteBookIcon.append("Del book?") */
+  // Adding corresponding content to child divs
   titleBox.textContent = ` ${ myLibrary[i].title} `
   authorBox.textContent = ` ${ myLibrary[i].author} `
   pagesBox.textContent = `${ myLibrary[i].pages}` + " pages"
   readStateBtn.textContent = "Unread"
-
-  // idBox.textContent = ` ${ myLibrary[i].id} `
-
   // Preparing book container (parent) 
   bookCard = document.createElement("div")
   bookCard.classList.add("book-card")
   bookCard.id = myLibrary[i].id
-  
   // Append child divs with their content to parent div
   bookCard.append(titleBox, authorBox, pagesBox, idBox, deleteBookIcon)
-
   // display book-cards in document's main book-container
   libraryContainer.append(bookCard)
+  // It just feels safe to me to end this with a return don't know why :)
   return myLibrary
 }
 
-// Step 2: Set individual book to a card using above function by iterating through library (book object) using "for ... in" loop) 
+// Step 2: Using "for ... in" loop to set individual book to card using above function by iterating through library (book objects) 
 for ( i in myLibrary ) {
-  // creating & adding classes to new divs inside function scope
   bookContainer ()
 }
 
@@ -205,45 +173,44 @@ function deleteBookData(){
 // Step 2: initializing the function
 deleteBookData()
 
-
-
+// It feels safe to return the library often. I'm paranoid, sorry :)
 myLibrary
 
-// Logic for toggling book read status on click (both on screen and inside object)
 
-//Step 1: targeting buttons by classes
-const toggleButtons = document.querySelectorAll(".read-state-btn")
+/* const toggleButtons = document.querySelectorAll(".read-state-btn")
+const groupOfDelIcon = document.querySelectorAll(".del-icon") */
 
-//Step 2: Defining the function
-function toggleReadState(){myLibrary[book].readState !== "unread" ? myLibrary[book].readState = "unread" : myLibrary[book].readState = "finished-reading"}
+// Logic for toggling book read status on click (both on screen and inside library objects)
+// Succeeded updating ui with new book content and updating object but somehow buttons on new objects won't work
+// This is where event delegation comes in to address a major wall I've hit during this project. after 24h questioning my existence here's what I've cooked
 
-//Step 3: initializing the function and iterating through all buttons and corresponding object data using for loops
-toggleButtons.forEach(
-  i => {
-    i.addEventListener(
-      "click", () => {
-        i.textContent !== "Unread" ? i.textContent = "Unread" : i.textContent = "Finished reading"
-        console.log(i)
-//Step 3.1 Toggling also corresponding object data using for in loop
-         for (book in myLibrary) {      
-            if (myLibrary[book].id === i.id){
-              toggleReadState()
-              console.log(myLibrary[book].readState)
-              toggleReadState()
-              console.log(myLibrary[book].readState)
-              return myLibrary}
-          }  
+libraryContainer.addEventListener('click', (e) => {
+  e.preventDefault()
+        // Step 1: Solve book's read-state buttons functionality (Toggle read-unread both on card and in library object items)
+        if (e.target.matches('.read-state-btn')) {
+            console.log(e.target.textContent)
+           if(e.target.textContent === "Finished reading") {e.target.textContent = "Unread"}
+           else if(e.target.textContent === "Unread") {e.target.textContent = "Finished reading"}
+           alsoToggleObjectReadState()
+           }
+           // Step 2: Making delete-icons "finally" delete their own card even on newly created elements
+           console.log(e.target.id)
+           if (e.target.matches('.del-icon')){
+           // console.log("delIcon matched", e.target)
+            bookToBeDeleted = document.getElementById(`${e.target.id}`)
+            bookToBeDeleted !== null ? bookToBeDeleted.remove() : bookToBeDeleted
+          }
+    }); 
 
-      }
-      
-    )
-      
+// Function to toggle read-unread state
+function alsoToggleObjectReadState(){
+  for (book in myLibrary){
+  if(myLibrary[book].readState === "unread"){myLibrary[book].readState = "finished-reading"}
+  else if (myLibrary[book].readState === "finished-reading"){myLibrary[book].readState = "unread"}
+  console.log("Target book objet state is now: " + myLibrary[book].readState)
   }
-)
-//Logic Completed
+}
 
 
-console.log(myLibrary)
-
-
+// The end for now!
 
