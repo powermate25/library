@@ -93,6 +93,7 @@ showDialogBtn = document.querySelector(".show-modal")
 closeDialogBtn = document.querySelector(".button-close-svg")
 dialogConfirmBtn = document.querySelector(".dialog-confirm")
 dialogOutputBox = document.querySelector(".output-box")
+const dialogForm = document.querySelector("dialog #dialog-form")
 
 addBookTitle = document.querySelector("dialog input[id=book-title]")
 addBookAuthor = document.querySelector("dialog input[id=book-author]")
@@ -121,7 +122,6 @@ dialogConfirmBtn.addEventListener(
   }
 )
 
-
 function confirmAddBook() {
     // Handling user-checked book status
     const addBookStatus = document.querySelector("dialog input[name=book-status]:checked")
@@ -130,35 +130,40 @@ function confirmAddBook() {
     userBookAuthor = String(addBookAuthor.value).trim()
     userBookPages = Number(addBookPages.value)
     generateId = crypto.randomUUID()
-    bookReadState = String(addBookStatus.value) === "finished-reading" ? "Finished reading" : "Unread"
+    bookReadState = String(addBookStatus.value) === "finished-reading"
+    ? "Finished reading"
+    : "Unread"
     bookObjectReadState = bookReadState === "Finished reading" ? "finished-reading" : "unread"
     addBookToLibrary(userBookTitle, userBookAuthor, userBookPages, generateId, bookObjectReadState)
     console.log(userBookTitle, userBookAuthor, userBookPages, generateId, bookReadState)
     createBookCard()
+    dialogForm.reset()
     dialog.close()
 }
 
-// Preparing container and book display elements
-  titleBox = document.createElement("div")
-  titleBox.classList.add("book-title")
-  authorBox = document.createElement("div")
-  authorBox.classList.add("book-author")
-  pagesBox = document.createElement("div")
-  pagesBox.classList.add("book-pages")
-  idBox = document.createElement("div")
-  idBox.classList.add("book-id")
-  readStateBtn = document.createElement("button")
-  readStateBtn.classList.add("read-state-btn")
-  bottomIconDiv = document.createElement("div")
-  bottomIconDiv.classList.add("icon-box")
-  delIcon = document.createElement("img")
-  delIcon.classList.add("del-icon")
-  delIcon.src = "./images/icons/delete-white.svg"
-  bookCard = document.createElement("div")
-  bookCard.classList.add("book-card")
-  delIcon.style.width = "18%"
+
 
 function createBookCard(){
+      // Preparing container and book display elements
+      titleBox = document.createElement("div")
+      titleBox.classList.add("book-title")
+      authorBox = document.createElement("div")
+      authorBox.classList.add("book-author")
+      pagesBox = document.createElement("div")
+      pagesBox.classList.add("book-pages")
+      idBox = document.createElement("div")
+      idBox.classList.add("book-id")
+      readStateBtn = document.createElement("button")
+      readStateBtn.classList.add("read-state-btn")
+      bottomIconDiv = document.createElement("div")
+      bottomIconDiv.classList.add("icon-box")
+      delIcon = document.createElement("img")
+      delIcon.classList.add("del-icon")
+      delIcon.src = "./images/icons/delete-white.svg"
+      bookCard = document.createElement("div")
+      bookCard.classList.add("book-card")
+      delIcon.style.width = "18%"
+
       //Assigning value and preparing book card
       readStateBtn.id = generateId
       bottomIconDiv.append(readStateBtn)
@@ -170,6 +175,6 @@ function createBookCard(){
       readStateBtn.textContent = bookReadState
       bookCard.id = generateId
       bookCard.append(titleBox, authorBox, pagesBox, idBox, bottomIconDiv)
-      libraryContainer.append(bookCard)
+      libraryContainer.appendChild(bookCard)
       myLibrary
 }
