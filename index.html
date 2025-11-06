@@ -6,6 +6,7 @@
         <title>Library</title>
         <link rel="stylesheet" href="./style.css">
         <script src="./script.js" defer></script>
+        <script src="./script-optional.js" defer></script>
     </head>
     <body>
 
@@ -13,7 +14,63 @@
             <h1 class="header-h1"><img class="icon" src="./images/icons/bookshelf.svg" width="100%">Library</h1>
             <button class="add-book">Add Book</button>
         </div>
+
+
+        <dialog class="add-book-dialog">
+            <!-- <svg class="dialog-close-icon" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" viewBox="0 0 24 24"><path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" /></svg> -->
+            <button form="dialog-form" formmethod="dialog" class="button-close-svg" value="user-cancel" formnovalidate>
+                 <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" /></svg>
+            </button>
+                <form method="dialog" id="dialog-form">
+                    
+                   <div>
+                    <p class="form-row-block">
+                        <label for="book-title">Title</label>
+                        <input type="text" id="book-title" placeholder="Book's Title" minlength="3" required></input>
+
+                    </p>
+                    <p class="form-row-block">
+                        <label for="book-author">Author</label>
+                        <input type="text" id="book-author" placeholder="Book's Author" required></input>
+                    </p>
+
+                    <p class="form-row-block">
+                        <label for="book-pages">Page number</label>
+                        <input type="number" min="1" id="book-pages" placeholder="How many pages ?" required></input>
+                    </p>
+                    <div class="read-status-box">
+                        <p>Finished Reading?</p>
+                        <div class="radio-box">
+                        <ol>
+                            <li>
+                                
+                                <input type="radio" id="book-is-read" name="book-status" value="finished-reading">
+                                <label for="book-is-read">Yes</label>
+                            </li>
+                            <li>
+                                
+                                <input type="radio" id="book-is-unread" name="book-status" value="unread" checked> 
+                                <label for="book-is-unread">No</label>
+                            </li>
+                        </ol>
+                        </div>
+                    </div>
+
+                    
+                    </div>
+                        
+                    <p class="form-row-block">
+                        <button class="dialog-confirm" type="submit" value="default">Add this book</button>
+                    </p>
+                    </div>         
+                </form>
+        </dialog>
+        <!-- <output class="output-box" ></output> -->
         
+
+
+
+
         <div class="book-listing library-container" id="main-box"></div>
 
     </body>

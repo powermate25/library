@@ -6,7 +6,6 @@ body{
     padding: 2rem;
 }
 * {
-    /* margin: 0; */
     padding: 0;
     box-sizing: border-box; 
 }
@@ -25,7 +24,6 @@ body{
     align-items: center;
 }
 .header > h1 > .icon {
-   /*  border: 1px solid blue; */
     width: 2.2rem; 
 }
 
@@ -42,18 +40,6 @@ body{
     color: oklch(98.7% 0.022 95.277);
 }
 
-.test-button {
-    border: 1px solid oklch(27.9% 0.077 45.635);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem;
-    padding: 1rem;
-    border-radius: 6px ;
-    background-color: oklch(27.9% 0.077 45.635);
-    color: oklch(98.7% 0.022 95.277);
-}
-
 button:hover {
     background-color: oklch(21% 0.077 45.635);
 }
@@ -63,18 +49,17 @@ button:hover {
     background-color: oklch(96.2% 0.059 95.617);
     border-radius: 9px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   /*  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
-    /* grid-auto-rows: 60%; */
-    grid-auto-rows: minmax(300px, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    grid-auto-rows: minmax(350px, 1fr);
     gap: 1rem;
     margin: 2rem;
     padding: 2rem;
+    justify-content: center;
 }
 
 .book-card {
     border: 1px solid oklch(70.7% 10% 91.605);
-    font-size: 80%;
+    font-size: calc(85% + 0.2rem); 
     text-align: center;
     padding: 1rem;
     border-radius: 9px;
@@ -94,12 +79,10 @@ button:hover {
 .book-title {
     font-weight: 600;
     height: 80%;
-    font-size: calc(1rem + 10%); 
-    /* border: 1px solid blue; */
+    font-size: calc(1rem + 25%); 
 }
 .book-author {
     width: 90%;
-    /* border: 1px solid blue; */
     border-radius: 3px;
     background-color: oklch(27.9% 0.077 45.635);
     background-size: 50%;
@@ -114,7 +97,6 @@ button:hover {
 
 
 .icon-box {
-    /* border: 1px solid blue; */
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -155,5 +137,120 @@ button:hover {
     background-color: transparent;
 }
 
-/* book-title,book-author,book-pages,book-pages,book-id */
+dialog[open] {
+    background-color: oklch(27.9% 0.077 45.635);
+    border-radius: 9px;
+    border: 1px solid oklch(27.9% 0.077 45.635);
+    color: oklch(98.7% 0.022 95.277);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 4px 10px oklch(25% 1% 45.635 / 50%);
+}
+
+
+.form-close-btn {
+    justify-self: end; 
+    margin: 0.5rem 0.5rem;
+}
+
+dialog form {
+    width: 20rem;
+    padding: 0rem 2rem 1rem 2rem;
+}
+
+.form-row-block {
+    display: flex;
+    justify-content: center; 
+    align-items: start;
+    flex-direction: column;
+    font-family: inherit;
+    gap: 0.1rem;
+}
+
+.form-row-block input { 
+    border-radius: 6px;
+    border-width: 1px;
+    font-family: inherit;
+    letter-spacing: 0.03rem;
+    width: 100%;
+    height: 2rem;
+    padding-left: 1rem;
+}
+
+dialog form label {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.read-status-box {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.read-status-box ol {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    gap: 1rem;
+}
+
+.read-status-box > p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.dialog-confirm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: 1px solid oklch(27.9% 0.077 45.635);
+    width: 100%; 
+    height: 3rem;
+    border-radius: 6px ;
+    background-color:oklch(98.7% 0.022 95.277) ;
+    color: oklch(27.9% 0.077 45.635);
+    margin: 1rem  0 0 0;
+}
+.dialog-confirm:hover {
+    background-color:oklch(27.9% 0.077 45.635) ;
+    color: oklch(98.7% 0.022 95.277);
+    border: 1px solid oklch(98.7% 0.022 95.277) ;
+    
+}
+
+.dialog-close-icon {
+    width: 10%;
+    fill: oklch(98.7% 0.022 95.277);
+    justify-self: end;
+    margin: 0.5rem;
+}
+
+.button-close-svg {
+    width: 2.1rem;
+    height: 2.1rem;
+    justify-self: end;
+    margin: 0.5rem;
+    border-radius: 50%;
+    background-color: transparent;
+    fill: oklch(98.7% 0.022 95.277);
+    border: none;
+    
+}
+
+.button-close-svg:hover {
+    fill: oklch(98.7% 0.022 95.277); 
+    background-color: transparent;
+}
+
+
+::backdrop {
+    backdrop-filter: blur(20px);
+}
 
