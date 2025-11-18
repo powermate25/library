@@ -5,8 +5,29 @@ const myLibrary = [];
 const libraryContainer = document.querySelector(".library-container")   
 const buttonAddBook = document.querySelector(".add-book")
 
+// Book Class update
+
+class CreateBook {
+  constructor(title, author, pageNumber, id, bookObjectReadState){
+  this.title = title;
+  this.author = author;
+  this.pageNumber = pageNumber;
+  this.id = id;
+  this.bookObjectReadState = bookObjectReadState
+
+  myLibrary.push(
+    {
+    title: this.title,
+    author: this.author,
+    pages: this.pageNumber,
+    id: this.id,
+    readState: bookObjectReadState  
+    } )
+}
+}
+
 // Book constructor function below
-function CreateBook (title, author, pageNumber, id, bookObjectReadState) {
+/* function CreateBook (title, author, pageNumber, id, bookObjectReadState) {
   if(!new.target){throw Error("Always remember to always use 'new'")};
   this.title = title;
   this.author = author;
@@ -25,7 +46,7 @@ function CreateBook (title, author, pageNumber, id, bookObjectReadState) {
   myLibrary.push(newBook)
 
   return myLibrary;
-}
+} */
 
 // Add new book to library function
 function addBookToLibrary (title, author, pageNumber, uniqueId, bookObjectReadState){
