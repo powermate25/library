@@ -1,3 +1,5 @@
+const clog = console.log
+
 // Empty Library Object declaration
 const myLibrary = [];
 
@@ -107,8 +109,8 @@ dialog.addEventListener(
     console.log(dialog.returnValue)
     }
 ) 
-
-dialogConfirmBtn.addEventListener(
+// Start refactoring for intuitive validity constraint checks
+/* dialogConfirmBtn.addEventListener(
   "click", (e) => {
     e.preventDefault()
     if (!addBookTitle.value){addBookTitle.style.cssText = "border: 3px solid red"} 
@@ -118,7 +120,48 @@ dialogConfirmBtn.addEventListener(
     confirmAddBook() 
     }
   }
+) */
+
+dialogConfirmBtn.addEventListener(
+  "click", (e) => {
+    currentTitle = document.querySelector("dialog input[id=book-title]")
+    currentAuthor = document.querySelector("dialog input[id=book-author]")
+    currentPages = document.querySelector("dialog input[id=book-pages]")
+
+    // e.preventDefault()
+    if (!currentTitle.value){
+      currentTitle.style.cssText = "border: 3px solid red"
+      clog(currentTitle.validationMessage) 
+      clog( currentTitle.validity) 
+      currentTitle.setCustomValidity("Please provide book's title.") 
+    } else {
+      currentTitle.setCustomValidity("")
+      currentTitle.style.cssText = "border: none;"
+    }
+
+    if (!currentAuthor.value){
+      currentAuthor.style.cssText = "border: 3px solid red"
+      currentAuthor.setCustomValidity("Please specify book's author.")
+    } else {
+      currentAuthor.setCustomValidity("")
+      currentAuthor.style.cssText = "border: none;"
+    }
+
+    if (!currentPages.value){
+      currentPages.style.cssText = "border: 3px solid red"
+      currentPages.setCustomValidity("Please provide book's page count") 
+    } else {
+      currentPages.setCustomValidity("")
+      currentPages.style.cssText = "border: none;"
+    }
+
+    if (currentTitle.value && currentAuthor.value && currentPages.value){
+    confirmAddBook() 
+    }
+  }
 )
+
+// End refactoring for intuitive validity constraint checks end
 
 function confirmAddBook() {
     // Handling user-checked book status
